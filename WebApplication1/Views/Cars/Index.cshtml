@@ -1,0 +1,28 @@
+﻿@model List<WebApplication3.Models.Car>
+<h1>Cars List</h1>
+<a asp-action="Create" type="button" class="btn btn-primary">Create new car</a>
+@if (Model.Any())
+{
+    <p>Count of cars: @Model.Count</p>
+}
+else
+{
+    <p>No cars found</p>
+}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var car in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @car.Model in @car.Color color @car.Year
+                        <span class="badge bg-primary">@car.Price</span>
+                    </h5>
+                    <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-dark"></a>
+                    <a asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
